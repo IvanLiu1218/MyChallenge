@@ -9,7 +9,7 @@ public class SolutionTest {
     private Solution solution = new Solution();
 
     @Test
-    public void testPoj1000() {
+    public void testPoj2386() {
         String[] input = {
             "W........WW.",
             ".WWW.....WWW",
