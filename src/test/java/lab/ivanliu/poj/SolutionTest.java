@@ -10,6 +10,22 @@ public class SolutionTest {
 
     @Test
     public void testPoj1000() {
-        assertEquals(3, solution.poj1000(1, 2));
+        String[] input = {
+            "W........WW.",
+            ".WWW.....WWW",
+            "....WW...WW.",
+            ".........WW.",
+            ".........W..",
+            "..W......W..",
+            ".W.W.....WW.",
+            "W.W.W.....W.",
+            ".W.W......W.",
+            "..W.......W."
+        };
+        char[][] lake = new char[10][12];
+        for (int i = 0; i < input.length; ++i) {
+            lake[i] = input[i].toCharArray();
+        }
+        assertEquals(3, solution.poj2386(lake));
     }
 }
