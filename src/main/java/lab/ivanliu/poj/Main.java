@@ -11,13 +11,11 @@ public class Main {
         solution.poj1852();
     }
 
-    private int[] minTime;
-    private int[] maxTime;
     public void poj1852() {
         Scanner cin = new Scanner(System.in);
         int cases = cin.nextInt();
-        minTime = new int[cases];
-        maxTime = new int[cases];
+        int[] minTime = new int[cases];
+        int[] maxTime = new int[cases];
         for (int c = 0; c < cases; ++c) {
             int L = cin.nextInt();
             int n = cin.nextInt();
@@ -25,23 +23,26 @@ public class Main {
             for (int i = 0; i < n; ++i) {
                 ants[i] = cin.nextInt();
             }
-            poj1852(L, ants, c);
+            int[] time = poj1852(L, ants);
+            minTime[c] = time[0];
+            maxTime[c] = time[1];
         }
         for (int i = 0; i < cases; ++i) {
             System.out.println(minTime[i] + " " + maxTime[i]);
         }
     }
-    public void poj1852(int L, int[] ants, int caseNum) {
-        minTime[caseNum] = Integer.MIN_VALUE;
+    public int[] poj1852(int L, int[] ants) {
+        int mint = Integer.MIN_VALUE;
         for (int i = 0; i < ants.length; ++i) {
             int t = Math.min(ants[i], L - ants[i]);
-            if (t > minTime[caseNum]) minTime[caseNum] = t;
+            if (t > mint) mint = t;
         }
-        maxTime[caseNum] = Integer.MIN_VALUE;
+        int maxt = Integer.MIN_VALUE;
         for (int i = 0; i < ants.length; ++i) {
             int t = Math.max(ants[i], L - ants[i]);
-            if (t > maxTime[caseNum]) maxTime[caseNum] = t;
+            if (t > maxt) maxt = t;
         }
+        return new int[] {mint, maxt};
     }
 
 }
