@@ -5,17 +5,17 @@ import java.util.Scanner;
 /** Java 1.5 */
 public class Main {
 
-    private static Main myMain = new Main();
+    private static Main solution = new Main();
 
     public static void main(String[] args) throws Exception {
-        myMain.poj1000();
+        solution.poj1000();
     }
 
     public void poj1000() {
         Scanner cin = new Scanner(System.in);
         int a = cin.nextInt();
         int b = cin.nextInt();
-        int c = myMain.poj1000(a, b);
+        int c = poj1000(a, b);
         System.out.println(c);
     }
 
