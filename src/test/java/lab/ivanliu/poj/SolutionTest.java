@@ -28,4 +28,25 @@ public class SolutionTest {
         }
         assertEquals(3, solution.poj2386(lake));
     }
+
+    @Test
+    public void testPojXXXX1() {
+        String[] input = {
+            "#S######.#",
+            "......#..#",
+            ".#.##.##.#",
+            ".#........",
+            "##.##.####",
+            "....#....#",
+            ".#######.#",
+            "....#.....",
+            ".####.###.",
+            "....#...G#"
+        };
+        char[][] maze = new char[10][10];
+        for (int i = 0; i < maze.length; ++i) {
+            maze[i] = input[i].toCharArray();
+        }
+        assertEquals(22, solution.pojXXX1(maze, 0, 1, 9, 8));
+    }
 }
