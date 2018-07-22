@@ -1,7 +1,13 @@
 package lab.ivanliu.poj;
 
+import java.util.ArrayDeque;
+import java.util.Arrays;
+import java.util.Deque;
 import java.util.Scanner;
 
+/**
+ *  挑战程序设计竞赛(第2版)
+ */
 public class Solution {
 
     public void poj1000() {
@@ -94,5 +100,43 @@ public class Solution {
                 }
             }
         }
+    }
+
+    /**
+     *  POJ: XXX1
+     *  Book: 2.1.5, P34
+     */
+    public static class MazePoint {
+        public int x;
+        public int y;
+        public MazePoint(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+    public int pojXXX1(char[][] maze, int x1, int y1, int x2, int y2) {
+        int[][] steps = new int[maze.length][];
+        for (int i = 0; i < maze.length; ++i) {
+            steps[i] = new int[maze[i].length];
+            Arrays.fill(steps[i], Integer.MIN_VALUE);
+        }
+        int[] dx = {-1, 1, 0, 0};
+        int[] dy = { 0, 0,-1, 1};
+        steps[x1][y1] = 0;
+        Deque<MazePoint> queue = new ArrayDeque<>();
+        queue.offerLast(new MazePoint(x1, y1));
+        while (!queue.isEmpty()) {
+            MazePoint p = queue.pollFirst();
+            for (int i = 0; i < dx.length; ++i) {
+                int nx = p.x + dx[i];
+                int ny = p.y + dy[i];
+                if (0 <= nx && nx < maze.length && 0 <= ny && ny < maze[0].length
+                        && maze[nx][ny] != '#' && steps[nx][ny] == Integer.MIN_VALUE) {
+                    queue.offerLast(new MazePoint(nx, ny));
+                    steps[nx][ny] = steps[p.x][p.y] + 1;
+                }
+            }
+        }
+        return steps[x2][y2];
     }
 }
