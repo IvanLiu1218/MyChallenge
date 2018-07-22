@@ -8,6 +8,10 @@ public class Main {
     private static Main myMain = new Main();
 
     public static void main(String[] args) throws Exception {
+        myMain.poj1000();
+    }
+
+    public void poj1000() {
         Scanner cin = new Scanner(System.in);
         int a = cin.nextInt();
         int b = cin.nextInt();
