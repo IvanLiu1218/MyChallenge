@@ -49,4 +49,19 @@ public class SolutionTest {
         }
         assertEquals(22, solution.pojXXX1(maze, 0, 1, 9, 8));
     }
+
+    @Test
+    public void testPoj3617() {
+        assertEquals("ABCBCD", solution.poj3617("ACDBCB"));
+    }
+
+    @Test
+    public void testPoj3069() {
+        assertEquals(1, solution.poj3069(new int[]{0}, 10));
+        assertEquals(3, solution.poj3069(new int[]{1,7,15,20,30,50}, 10));
+        assertEquals(2, solution.poj3069(new int[]{1,50}, 10));
+
+        assertEquals(2, solution.poj3069(new int[]{10,20,20}, 0));
+        assertEquals(4, solution.poj3069(new int[]{70,30,1,7,15,20,50}, 10));
+    }
 }
