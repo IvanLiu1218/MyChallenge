@@ -151,12 +151,17 @@ public class Solution {
         int N = cin.nextInt();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < N; ++i) {
-            sb.append((char)cin.nextInt());
+            sb.append(cin.next().charAt(0));
         }
         System.out.println(poj3617(sb.toString()));
     }
     public String poj3617(String s) {
         StringBuilder sb = new StringBuilder();
+        for (int i = s.length() - 1; i >= 0; --i) {
+            sb.append(s.charAt(i));
+        }
+        String s2 = sb.toString();
+        sb = new StringBuilder();
         int i = 0;
         int j = s.length() - 1;
         while (i <= j) {
@@ -167,25 +172,16 @@ public class Solution {
                 sb.append(s.charAt(j));
                 --j;
             } else /* s[i] == s[j] */ {
-                int x = i + 1;
-                int y = j - 1;
-                while (x < y) {
-                    if (s.charAt(x) < s.charAt(y)) {
-                        sb.append(s.charAt(i));
-                        ++i;
-                        break;
-                    } else if (s.charAt(x) > s.charAt(y)) {
-                        sb.append(s.charAt(j));
-                        --j;
-                        break;
-                    }
-                    ++i;
-                    --j;
-                }
-                if (x >= y) {
-                    // if s[i + 1] == s[j - 1], select any of them
+                int x = s.length() - j - 1;
+                int y = s.length() - i - 1;
+                String ss1 = s.substring(i, j + 1);
+                String ss2 = s2.substring(x, y + 1);
+                if (ss1.compareTo(ss2) <= 0) {
                     sb.append(s.charAt(i));
                     ++i;
+                } else /* ss1 > ss2 */ {
+                    sb.append(s.charAt(j));
+                    --j;
                 }
             }
         }
