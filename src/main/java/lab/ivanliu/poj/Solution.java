@@ -153,7 +153,15 @@ public class Solution {
         for (int i = 0; i < N; ++i) {
             sb.append(cin.next().charAt(0));
         }
-        System.out.println(poj3617(sb.toString()));
+        String result = poj3617(sb.toString());
+        int len = result.length();
+        int i = 0;
+        while (len > 80) {
+            System.out.println(result.substring(i, i + 80));
+            len -= 80;
+            i += 80;
+        }
+        System.out.println(result.substring(i, result.length()));
     }
     public String poj3617(String s) {
         StringBuilder sb = new StringBuilder();
