@@ -1,5 +1,8 @@
 package lab.ivanliu.poj;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 /** Java 1.5 */
@@ -8,44 +11,39 @@ public class Main {
     private static Main solution = new Main();
 
     public static void main(String[] args) throws Exception {
-        solution.poj2386();
+        solution.poj3069();
     }
 
-    public void poj2386() {
+    public void poj3069() {
         Scanner cin = new Scanner(System.in);
+        int R = cin.nextInt();
         int N = cin.nextInt();
-        int M = cin.nextInt();
-        cin.nextLine();
-        char[][] lake = new char[N][M];
-        for (int i = 0; i < N; ++i) {
-            String line = cin.nextLine();
-            lake[i] = line.toCharArray();
-        }
-        int num = poj2386(lake);
-        System.out.println(num);
-    }
-    public int poj2386(char[][] lake) {
-        int num = 0;
-        for (int i = 0; i < lake.length; ++i) {
-            for (int j = 0; j < lake[i].length; ++j) {
-                if (lake[i][j] == 'W') {
-                    poj2386_dfs(lake, i, j);
-                    ++num;
-                }
+        List<Integer> result = new ArrayList<Integer>();
+        while (N != -1 && R != -1) {
+            int[] points = new int[N];
+            for (int i = 0; i < N; ++i) {
+                points[i] = cin.nextInt();
             }
+            result.add(poj3069(points, R));
+            R = cin.nextInt();
+            N = cin.nextInt();
+        }
+        for (int i = 0; i < result.size(); ++i) {
+            System.out.println(result.get(i));
+        }
+    }
+    public int poj3069(int[] points, int R) {
+        Arrays.sort(points);
+        int num = 0;
+        int i = 0;
+        while (i < points.length) {
+            int d = points[i] + R;
+            while (i < points.length && points[i] <= d) ++i;
+            int t = i - 1;
+            ++num;
+            d = points[t] + R;
+            while (i < points.length && points[i] <= d) ++i;
         }
         return num;
-    }
-    public void poj2386_dfs(char[][] lake, int x, int y) {
-        lake[x][y] = '.';
-        for (int i = -1; i <= 1; ++i) {
-            for (int j = -1; j <= 1; ++j) {
-                if (0 <= x + i && x + i < lake.length
-                        && 0 <= y + j && y + j < lake[0].length
-                        && lake[x + i][y + j] == 'W') {
-                    poj2386_dfs(lake, x + i, y + j);
-                }
-            }
-        }
     }
 }
